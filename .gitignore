@@ -3,5 +3,10 @@ backend/node_modules/
 frontend/node_modules/
 frontend/dist/
 backend/inventory.db
+backend/inventory.db-shm
+backend/inventory.db-wal
+frontend/src/assets/react.svg
+frontend/src/assets/vite.svg
+frontend/src/assets/hero.png
 *.log
 .DS_Store

@@ -1,12 +1,22 @@
 const express = require('express');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 const db = require('./database');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 500,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many requests, please try again later.' },
+});
+
 app.use(cors());
 app.use(express.json());
+app.use('/api', limiter);
 
 // GET all products (with optional search and category filter)
 app.get('/api/products', (req, res) => {
